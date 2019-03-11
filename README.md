@@ -23,3 +23,32 @@ yarn start
 Open address `http://localhost:8080` in browser and you will see in console the error `Uncaught Invariant Violation: Hooks can only be called inside the body of a function component`
 
 If you try to remove `useState` code in `app-child` component will see no error.
+
+###How to fix it in dev using yarn link ?
+You have to link main app react to child component
+
+so in main app :
+
+```
+cd node_modules/react
+yarn link
+```
+
+then in child component :
+
+```
+yarn link "react"
+yarn build
+```
+
+and then everything works :)
+
+###How to fix it without yarn link ?
+
+in main app :
+
+```
+yarn remove app-child
+yarn add file:<child_app_path>/app-child
+```
+
